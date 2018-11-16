@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" >
+    <head>
+        <title>Modifier mon compte</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+       
+        
+        Modifier mes informations client :
+        <h:form>
+            Mon id : <p:inputText value='#{vclient.idTarget}'/>
+            Nouveau nom : <p:inputText value="#{vclient.nom}"/>
+            <h:commandButton value="Supp" action="#{vclient.updateNomClient()}"/>
+        </h:form>
+        
+         <h:form>
+            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                <p:outputLabel for="city" value="City:" />
+                <p:selectOneRadio id="city" value="#{vclient.idTarget}"  layout="grid" columns="3">
+                    <f:selectItems value="#{vclient.allClient}" var="c" itemLabel="#{c.nom}" itemValue="#{c.id}"/>
+                </p:selectOneRadio>
+            </h:panelGrid>
+
+        </h:form>
+        
+        
+    </body>
+</html>

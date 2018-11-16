@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" >
+    <head>
+        <title>Administration des films</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+
+        <script type="text/javascript">
+            function handleDrop(event, ui) {
+                var droppedFilm = ui.draggable;
+
+                droppedFilm.fadeOut('fast');
+            }
+        </script>
+
+
+        <h:form>
+            <p:fieldset id="availableFilmsField" legend="Available Films">
+                <p:dataGrid id="availableFilms" var="film" value="#{AdminFilmsView.allFilms}" columns="3">
+                    <p:panel id="pnl" header="#{film.id}" style="text-align:center">
+                    </p:panel>
+
+                    <p:draggable for="pnl" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
+                </p:dataGrid>
+            </p:fieldset>
+
+            <p:fieldset id="selectedFilms" legend="Selected Films" style="margin-top:20px">
+                <p:outputPanel id="dropArea">
+                    <h:outputText value="Deplacez ici" rendered="#{empty AdminFilmsView.droppedFilms}" style="font-size:24px;" />
+                    <p:dataTable id="selectedFilmsTable" var="film" value="#{AdminFilmsView.droppedFilms}" rendered="#{not empty AdminFilmsView.droppedFilms}">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{film.id_film}" />
+                        </p:column>
+
+                        <p:column headerText="Nom">
+                            <h:outputText value="#{film.nom_film}" />
+                        </p:column>
+
+                        <p:column headerText="Salle">
+                            <h:outputText value="#{film.id_salle}" />
+                        </p:column>
+
+                        <p:column style="width:32px">
+                            <p:commandButton update=":filmForm:display" oncomplete="PF('filmDialog').show()" icon="pi pi-search">
+                                <f:setPropertyActionListener value="#{film}" target="#{AdminFilmsView.selectedFilm}" />
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </p:outputPanel>
+            </p:fieldset>
+
+            <p:droppable for="selectedFilms" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableFilms" onDrop="handleDrop">
+                <p:ajax listener="#{AdminFilmsView.onFilmDrop}" update="dropArea availableFilms" />
+            </p:droppable>
+
+        </h:form>
+
+
+    </body>
+</html>
