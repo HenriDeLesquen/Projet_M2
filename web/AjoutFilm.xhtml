@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <head>
+        <title>Afficher les films disponibles</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+              
+        Liste des films disponibles actuellement :
+        
+        <p:dataTable value="#{vfilm.allFilm}" var="item">
+            <p:column headerText="numero de film">
+                <h:outputText value="#{item.idFilm}"/>
+            </p:column>
+            <p:column headerText="nom du film">
+                <h:outputText value="#{item.nomFilm}"/>
+            </p:column>
+            <p:column headerText="numero de salle">
+                <h:outputText value="#{item.idSalle}"/>
+            </p:column>
+        </p:dataTable>
+        
+        
+        Ajouter un film à cette liste :    
+        
+        <h:form>
+            Nom : <p:inputText value="#{vfilm.film.nomFilm}"/>
+            Numéro de salle : <p:inputText value="#{vfilm.film.idSalle}"/>
+            <h:commandButton action="#{vfilm.addFilm()}" value="Ajouter un film"/>
+        </h:form>
+        
+        
+        
+        
+    </body>
+</html>
