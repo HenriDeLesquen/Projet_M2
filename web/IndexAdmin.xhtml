@@ -15,7 +15,16 @@ and open the template in the editor.
     </head>
     <body>
        
-        
+        <h:form>
+            <p:growl id="messages" showDetail="true"/>   
+            <p:menuButton value="ADministration Films">
+                <p:menuitem value="Afficher les films disponibles" outcome="AjoutFilm" update="messages" icon="pi pi-user"/>
+                <p:separator />
+                <p:menuitem value="Modifier la liste des films à l'affiche" outcome="ModificationFilm" update="messages" icon="pi pi-refresh"/>
+                <p:separator />
+                <p:menuitem value="Supprimer des films de la liste" outcome="SuppressionFilm" ajax="false" icon="pi pi-times"/>
+            </p:menuButton>
+        </h:form>
         
         
         

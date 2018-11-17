@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>Supprimer des films de la liste</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+      
+        Liste des films disponibles :
+        
+        
+        
+        Suppression d'un film :
+        <h:form>
+            ID : <p:inputText value='#{vfilm.idTarget}'/>
+            <h:commandButton value="Supprimer" action="#{vfilm.deleteFilm()}"/>
+        </h:form>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <h:form>
+    <h3>On Load</h3>
+    <p:messages id="messages" closable="true">
+        <p:effect type="pulsate" event="load" delay="500" />
+    </p:messages>
+ 
+    
+    <p:panel id="panel" header="Message Effects" toggleable="true">
+        <h:panelGrid columns="2" cellpadding="5">
+            <p:outputLabel for="text" value="Type:" />
+            <p:inputText id="text" value="#{effectView.text}" required="true" />
+ 
+            <h:outputText />
+            <p:commandButton id="submit" value="Echo" action="#{effectView.echo}" update="messages"/>
+        </h:panelGrid>
+    </p:panel>
+</h:form>
+        
+    </body>
+</html>

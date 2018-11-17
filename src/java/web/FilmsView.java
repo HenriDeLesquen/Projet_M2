@@ -40,14 +40,14 @@ public class FilmsView implements Serializable{
     }
     
     
-     public List<Film> getAllFilm(){
+    public List<Film> getAllFilm(){
         return filmDao.findAll();
     }
     public Film getFilm(){
         return film;
     }
 
-    public void setFilm(Film film) {
+    public void setNomFilm(Film film) {
         this.film = film;
     }
     public String getNom() {
@@ -85,11 +85,9 @@ public class FilmsView implements Serializable{
     
     public void updateNomFilm(){
         Film f= filmDao.find(idTarget);
-        f.setNom(nom_film);
+        f.setNomFilm(nom_film);
         filmDao.edit(f);
 
     }
-    
-    
-    
+      
 }
