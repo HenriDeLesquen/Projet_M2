@@ -16,10 +16,38 @@ and open the template in the editor.
     <body>
        
         
+         <p:tabMenu activeIndex="#{param.i}">
+            <p:menuitem value="Administration Films" outcome="IndexAdmin" icon="pi pi-file">
+                <f:param name="i" value="0" />
+            </p:menuitem>      
+        </p:tabMenu>
         
         
         
+        Liste des films disponibles actuellement :
         
+        <p:dataTable value="#{vfilm.allFilm}" var="item">
+            <p:column headerText="numero de film">
+                <h:outputText value="#{item.idFilm}"/>
+            </p:column>
+            <p:column headerText="nom du film">
+                <h:outputText value="#{item.nomFilm}"/>
+            </p:column>
+            <p:column headerText="numero de salle">
+                <h:outputText value="#{item.idSalle}"/>
+            </p:column>
+        </p:dataTable>
+        
+        
+        
+        Modifier un film :
+        <h:form>
+            Id du film: <p:inputText value='#{vfilm.idTarget}'/>
+            Nouveau nom : <p:inputText value="#{vfilm.nom}"/>
+            <h:commandButton value="Modifier" action="#{vfilm.updateNomFilm()}"/>
+        </h:form>
+        
+         
         
     </body>
 </html>
